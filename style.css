@@ -1,0 +1,40 @@
+/* Style pour le body pour qu'il occupe tout l'écran et utilise Flexbox */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    height: 100vh; /* Hauteur de la vue */
+    background-color: #333; /* Couleur de fond */
+}
+
+/* Style pour le conteneur principal */
+.container {
+    position: relative; /* Permettre le positionnement absolu des rectangles sous-jacents */
+}
+
+/* Style pour le rectangle principal */
+.rectangle {
+    width: calc(70vh * 9 / 16); /* Largeur basée sur le ratio 16:9 pour un rectangle vertical */
+    height: 40vh; /* Hauteur de 40% de la hauteur de la vue */
+    background-color: lightgray; /* Couleur de fond du rectangle */
+    transition: transform 0.2s ease, z-index 0.2s ease; /* Transition pour l'animation de réduction et changement de z-index */
+    position: relative; /* Position relative pour les sous-couches */
+    z-index: 10; /* Toujours au-dessus des sous-couches */
+    border-radius: 20px; /* Coins arrondis */
+    overflow: hidden; /* Masquer le contenu qui dépasse */
+}
+
+/* Style pour les rectangles sous-jacents */
+.underlay {
+    position: absolute;
+    width: calc(70vh * 9 / 16 ); /* Largeur égale à celle du rectangle principal réduit */
+    height: 48vh; /* Hauteur égale à celle du rectangle principal réduit */
+    background-color: rgba(255, 255, 255, 0.1); /* Couleur semi-transparente pour l'effet de profondeur */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Commencer caché (échelle 0) */
+    border-radius: 20px; /* Coins arrondis */
+    transition: transform 0.3s ease, z-index 0.2s ease; /* Transition pour l'animation de sortie et changement de z-index */
+    z-index: -1; /* Sous le rectangle principal */
+}
